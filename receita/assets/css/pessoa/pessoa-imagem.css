@@ -1,0 +1,21 @@
+.pessoa__imagem {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+    height: 300px;
+    margin: 0 auto;
+    width: 300px;
+}
+
+.pessoa__imagem--ian {
+    background-image: url(../../img/pessoas/ian.jpg);
+}
+
+.pessoa__imagem--joana {
+    background-image: url(../../img/pessoas/joana.jpg);
+}
+
+.pessoa__imagem--fernando {
+    background-image: url(../../img/pessoas/fernando.jpg);
+}
