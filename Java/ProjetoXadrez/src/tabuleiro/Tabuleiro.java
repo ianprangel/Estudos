@@ -1,7 +1,5 @@
 package tabuleiro;
 
-import xadrez.pecas.Torre;
-
 public class Tabuleiro {
 	
 	private int linhas;
