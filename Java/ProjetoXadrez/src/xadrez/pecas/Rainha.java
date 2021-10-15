@@ -5,15 +5,15 @@ import tabuleiro.Tabuleiro;
 import xadrez.Cor;
 import xadrez.PecaXadrez;
 
-public class Bispo extends PecaXadrez {
+public class Rainha extends PecaXadrez {
 
-	public Bispo(Tabuleiro tabuleiro, Cor cor) {
+	public Rainha(Tabuleiro tabuleiro, Cor cor) {
 		super(tabuleiro, cor);
 	}
 	
 	@Override
 	public String toString() {
-		return "B";
+		return "Q";
 	}
 
 	@Override
@@ -21,6 +21,46 @@ public class Bispo extends PecaXadrez {
 		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 		Posicao p = new Posicao(0,0);
 		
+		// verificação pra cima
+		p.setValores(posicao.getLinha() - 1, posicao.getColuna());;
+		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setLinha(p.getLinha() - 1);
+		}
+		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+		}
+		
+		// verificação pra esquerda
+		p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
+		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() - 1);
+		}
+		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+		}
+				
+		// verificação pra direita
+		p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
+		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setColuna(p.getColuna() + 1);
+		}
+		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+		}
+		
+		// verificação pra baixo
+		p.setValores(posicao.getLinha() + 1, posicao.getColuna());;
+		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+			p.setLinha(p.getLinha() + 1);
+		}
+		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
+			mat[p.getLinha()][p.getColuna()] = true;
+		}
+				
 		// verificação noroeste
 		p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);;
 		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
@@ -30,7 +70,7 @@ public class Bispo extends PecaXadrez {
 		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
 			mat[p.getLinha()][p.getColuna()] = true;
 		}
-		
+				
 		// verificação nordeste
 		p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
 		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
@@ -40,7 +80,7 @@ public class Bispo extends PecaXadrez {
 		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
 			mat[p.getLinha()][p.getColuna()] = true;
 		}
-				
+						
 		// verificação sudeste
 		p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
 		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
@@ -50,7 +90,7 @@ public class Bispo extends PecaXadrez {
 		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
 			mat[p.getLinha()][p.getColuna()] = true;
 		}
-		
+				
 		// verificação sudoeste
 		p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);;
 		while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
@@ -59,9 +99,8 @@ public class Bispo extends PecaXadrez {
 		}
 		if (getTabuleiro().posicaoExiste(p) && temUmaPecaOponente(p)) {
 			mat[p.getLinha()][p.getColuna()] = true;
-		}
-				
-					
+		}		
+		
 		return mat;
 	}
 }
